@@ -1,6 +1,6 @@
-import './index.scss';
-import LogoTitle from '../../assets/images/logo-s.png';
-import { Link } from 'react-router-dom';
+import './index.scss'
+import LogoTitle from '../../assets/images/logo-s.png'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -13,8 +13,10 @@ const Home = () => {
           <br />
           web developer
         </h1>
-        <h2>Frontend Developer / Junior Java Script/ SOlidity</h2>
-        <Link to="/contact" className='flat-button'>CONTACT ME</Link>
+        <h2>Frontend Developer / Junior Java Script / Solidity</h2>
+        <Link to="/contact" className="flat-button">
+          CONTACT ME
+        </Link>
       </div>
     </div>
   )
