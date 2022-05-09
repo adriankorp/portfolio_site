@@ -1,11 +1,13 @@
 import logo from './logo.svg'
 import './App.scss'
-import { Routes } from 'react-router-dom'
-
+import { Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
 function App() {
   return (
     <>
-      <Routes></Routes>
+      <Routes>
+        <Route path="/" element={<Layout />} />
+      </Routes>
     </>
   )
 }
