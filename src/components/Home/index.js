@@ -3,16 +3,18 @@ import LogoTitle from '../../assets/images/logo-s.png'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters'
+import Loader from 'react-loaders'
 
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
-  const nameArray = ['l', 'o', 'b', 'o', 'd', 'a', 'n']
+  const nameArray = ['d', 'r', 'i', 'a', 'n']
   const jobArray = [
     'w',
     'e',
     'b',
+    '3',
     ' ',
     'd',
     'e',
@@ -33,7 +35,8 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="container home-page">
+    <>
+        <div className="container home-page">
       <div className="text-zone">
         <h1>
           <span className={letterClass}>H</span>
@@ -45,13 +48,13 @@ const Home = () => {
           <AnimatedLetters
             letterClass={letterClass}
             strArray={nameArray}
-            idx={15}
+            idx={16}
           />
           <br />
           <AnimatedLetters
             letterClass={letterClass}
             strArray={jobArray}
-            idx={22}
+            idx={21}
           />
         </h1>
         <h2>Junior Python / Junior Java Script / Junior Blockchain</h2>
@@ -60,6 +63,9 @@ const Home = () => {
         </Link>
       </div>
     </div>
+    <Loader type="ball-clip-rotate-multiple"/>
+    </>
+
   )
 }
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import {
   faEthereum,
   faGithub,
-  faHtml5,
   faLinux,
   faPython,
   faReact,
@@ -68,7 +67,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Loader type="pacman" />
+      <Loader type="ball-clip-rotate-multiple" />
     </>
   )
 }
