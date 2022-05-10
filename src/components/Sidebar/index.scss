@@ -77,10 +77,20 @@
         content: 'ABOUT';
       }
     }
-    a.contact-link {
+    a.skills-link {
       &:after {
-        content: 'CONTACT';
+        content: 'SKILLS';
       }
+
+    
+    }
+    a.smartcontract-link {
+      &:after {
+        line-height: 25px;
+        content: 'SMART\ CONTRACT';
+      }
+
+    
     }
     a.active {
         svg {

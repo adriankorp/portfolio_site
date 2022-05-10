@@ -11,6 +11,7 @@ import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.scss'
+import { faFileCode } from '@fortawesome/free-solid-svg-icons'
 
 const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -50,7 +51,7 @@ const About = () => {
               <FontAwesomeIcon icon={faLinux} color="#333" />
             </div>
             <div className="face2">
-              <FontAwesomeIcon icon={faHtml5} color="#F06529" />
+              <FontAwesomeIcon icon={faFileCode} color="#F06529" />
             </div>
             <div className="face3">
               <FontAwesomeIcon icon={faPython} color="#28A4D9" />
