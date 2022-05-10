@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters'
 import Loader from 'react-loaders'
 
-
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
@@ -36,36 +35,37 @@ const Home = () => {
 
   return (
     <>
-        <div className="container home-page">
-      <div className="text-zone">
-        <h1>
-          <span className={letterClass}>H</span>
-          <span className={`${letterClass} _12`}>i,</span>
-          <br />
-          <span className={`${letterClass} _13`}>I</span>
-          <span className={`${letterClass} _14`}>'m</span>
-          <img src={LogoTitle} alt="dev" />
-          <AnimatedLetters
-            letterClass={letterClass}
-            strArray={nameArray}
-            idx={16}
-          />
-          <br />
-          <AnimatedLetters
-            letterClass={letterClass}
-            strArray={jobArray}
-            idx={21}
-          />
-        </h1>
-        <h2>Junior Python / Junior Java Script / Junior Blockchain</h2>
-        <Link to="/contact" className="flat-button">
-          CONTACT ME
-        </Link>
+      <div className="container home-page">
+        <div className="text-zone">
+          <h1>
+            <span className={letterClass}>H</span>
+            <span className={`${letterClass} _12`}>i,</span>
+            <br />
+            <span className={`${letterClass} _13`}>I</span>
+            <span className={`${letterClass} _14`}>'m</span>
+            <img src={LogoTitle} alt="dev" />
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArray={nameArray}
+              idx={16}
+            />
+            <br />
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArray={jobArray}
+              idx={21}
+            />
+          </h1>
+          <h2>
+            Junior Python / Junior Java Script / Junior Blockchain Developer
+          </h2>
+          <Link to="/contact" className="flat-button">
+            CONTACT ME
+          </Link>
+        </div>
       </div>
-    </div>
-    <Loader type="ball-clip-rotate-multiple"/>
+      <Loader type="ball-clip-rotate-multiple" />
     </>
-
   )
 }
 
