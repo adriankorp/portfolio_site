@@ -70,6 +70,7 @@
     }
   }
   .skills-zone {
+    padding-top: 30rem;
     position: absolute;
     left: 60%;
     top: 40%;
@@ -96,9 +97,12 @@
         display: block;
 
         div {
+            display: block;
+            width: 0;
             background-color: #a1d610;
             height: 100%;
-            transition: width 1.3s  ease-out ;
+            transition: width 1.3s ease-out;
+
         }
       }
     }
