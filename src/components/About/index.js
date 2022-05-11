@@ -38,10 +38,15 @@ const About = () => {
             technologies on challenging and diverse projects.
           </p>
           <p align="LEFT">
-            I'm quietly confident, naturally curious, and perpetually working on
-            improving my chops one design problem at a time.
+            I would like to develop my skills under the watchful eye of more
+            experienced programmers who would help me spread my wings in the IT
+            world.
           </p>
-          <p>###</p>
+          <p>
+            My main hobby has been cryptocurrencies for 2 years, thanks to them
+            I have achieved a lot and I would like to continue to develop in
+            this direction.
+          </p>
         </div>
 
         <div className="stage-cube-cont">
