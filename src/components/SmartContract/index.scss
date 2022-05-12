@@ -1,0 +1,25 @@
+.container.smartcontract-page {
+    display: flex;
+    flex-direction: row;
+    padding-top: 15rem;
+
+    .contract-data {
+        margin-left: 12rem;
+        margin-right: 1rem;
+        width: 50%;
+        height: 60%;
+        background-color: green;
+        text-align: right;
+        color: white;
+    }
+    
+    .swaps-data {
+        margin-right: 5rem;
+        width: 50%;
+        color: green;
+        background-color: red;
+        height: 60%;
+        
+    }
+}
+
