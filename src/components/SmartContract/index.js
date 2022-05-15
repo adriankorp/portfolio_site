@@ -1,9 +1,8 @@
-
-import Web3 from 'web3';
+import Web3 from 'web3'
 import { Component } from 'react'
 import Loader from 'react-loaders'
 import './index.scss'
-
+import AnimatedLetters from '../AnimatedLetters'
 
 class SmartContract extends Component {
   // Constructor
@@ -11,57 +10,76 @@ class SmartContract extends Component {
     super(props)
 
     this.state = {
-        data: [],
-        rapid: 0,
-        fast: 0,
-        standard: 0,
-        slow: 0,
-        priceUSD: 0
-
+      data: [],
+      rapid: 0,
+      fast: 0,
+      standard: 0,
+      slow: 0,
+      priceUSD: 0,
+      LetterClass: 'text-animate'
     }
-    this.getGasData();
+    this.getGasData()
   }
-  
-    async componentDidMount() {
-      this.timer = setInterval(() => {
-        this.getGasData();
-      }, 10000)
-    }
 
-    componentWillUnmount() {
-        clearInterval(this.timer);
-      }
+  async componentDidMount() {
+    setTimeout(() => {
+      this.state.LetterClass = 'text-animate-hover'
+    }, 1000)
+    console.log('Testllllllllll')
+    this.timer = setInterval(() => {
+      this.getGasData()
+    }, 10000)
+  }
 
-    toGasPriceUsd(number, gasUsed, price) {
-        number = number / 1e18 * price * gasUsed
-        return number.toFixed(2)
-    }
-    async getGasData(){
-        fetch('https://etherchain.org/api/gasnow')
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({
-              data: json.data,
-              rapid: parseFloat(Web3.utils.fromWei(json.data.rapid.toString(),'gwei')).toFixed(0),
-              fast: parseFloat(Web3.utils.fromWei(json.data.fast.toString(), 'gwei')).toFixed(0),
-              standard: parseFloat(Web3.utils.fromWei(json.data.standard.toString(), 'gwei')).toFixed(0),
-              slow: parseFloat(Web3.utils.fromWei(json.data.slow.toString(), 'gwei')).toFixed(0),
-              priceUSD: json.data.priceUSD
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
 
-          })
-          console.log(this.state.rapid);
-          console.log(this.state.fast);
-          console.log(this.state.standard);
-          console.log(this.state.slow);
+  toGasPriceUsd(number, gasUsed, price) {
+    number = (number / 1e18) * price * gasUsed
+    return number.toFixed(2)
+  }
+
+  async getGasData() {
+    fetch('https://etherchain.org/api/gasnow')
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          data: json.data,
+          rapid: parseFloat(
+            Web3.utils.fromWei(json.data.rapid.toString(), 'gwei')
+          ).toFixed(0),
+          fast: parseFloat(
+            Web3.utils.fromWei(json.data.fast.toString(), 'gwei')
+          ).toFixed(0),
+          standard: parseFloat(
+            Web3.utils.fromWei(json.data.standard.toString(), 'gwei')
+          ).toFixed(0),
+          slow: parseFloat(
+            Web3.utils.fromWei(json.data.slow.toString(), 'gwei')
+          ).toFixed(0),
+          priceUSD: json.data.priceUSD,
+        })
+        console.log(this.state.rapid)
+        console.log(this.state.fast)
+        console.log(this.state.standard)
+        console.log(this.state.slow)
         //   this.timer = setInterval(() => {
         //     this.getGasData();
         //   }, 3000);
-       })
-    }
+      })
+  }
   render() {
     return (
       <>
         <div className="container smartcontract-page">
+          <h1>
+            <AnimatedLetters
+              letterClass={this.state.LetterClass}
+              strArray={['G', 'A', 'S', ' ', 'T', 'R', 'A', 'C', 'K', 'E', 'R']}
+              idx={15}
+            />
+          </h1>
           <div className="contract-data">
             <div className="speed-box">
               <div className="text-speed ">
@@ -70,7 +88,14 @@ class SmartContract extends Component {
               <div className="gas-view-zone">
                 <p>GAS PRICE</p>
                 <p>{this.state.slow}</p>
-                <p>${this.toGasPriceUsd(21000,this.state.priceUSD,Web3.utils.toWei(this.state.slow.toString(),"gwei"))}</p>
+                <p>
+                  $
+                  {this.toGasPriceUsd(
+                    21000,
+                    this.state.priceUSD,
+                    Web3.utils.toWei(this.state.slow.toString(), 'gwei')
+                  )}
+                </p>
               </div>
             </div>
 
@@ -81,7 +106,14 @@ class SmartContract extends Component {
               <div className="gas-view-zone">
                 <p>GAS PRICE</p>
                 <p>{this.state.standard}</p>
-                <p>${this.toGasPriceUsd(21000,this.state.priceUSD,Web3.utils.toWei(this.state.standard.toString(),"gwei"))}</p>
+                <p>
+                  $
+                  {this.toGasPriceUsd(
+                    21000,
+                    this.state.priceUSD,
+                    Web3.utils.toWei(this.state.standard.toString(), 'gwei')
+                  )}
+                </p>
               </div>
             </div>
             <div className="speed-box">
@@ -91,7 +123,14 @@ class SmartContract extends Component {
               <div className="gas-view-zone">
                 <p>GAS PRICE</p>
                 <p>{this.state.fast}</p>
-                <p>${this.toGasPriceUsd(21000,this.state.priceUSD,Web3.utils.toWei(this.state.fast.toString(),"gwei"))}</p>
+                <p>
+                  $
+                  {this.toGasPriceUsd(
+                    21000,
+                    this.state.priceUSD,
+                    Web3.utils.toWei(this.state.fast.toString(), 'gwei')
+                  )}
+                </p>
               </div>
             </div>
             <div className="speed-box">
@@ -101,7 +140,14 @@ class SmartContract extends Component {
               <div className="gas-view-zone">
                 <p>GAS PRICE</p>
                 <p>{this.state.rapid}</p>
-                <p>${this.toGasPriceUsd(21000,this.state.priceUSD,Web3.utils.toWei(this.state.rapid.toString(),"gwei"))}</p>
+                <p>
+                  $
+                  {this.toGasPriceUsd(
+                    21000,
+                    this.state.priceUSD,
+                    Web3.utils.toWei(this.state.rapid.toString(), 'gwei')
+                  )}
+                </p>
               </div>
             </div>
           </div>
