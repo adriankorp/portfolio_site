@@ -151,7 +151,41 @@ class SmartContract extends Component {
               </div>
             </div>
           </div>
-          <div className="swaps-data"></div>
+          <div className="swaps-data">
+            <div className='contract-container'>
+              <div className='contract-name'>
+                   <p>UNISWAP ETH/USDT</p>
+              </div>
+              <div className='contract-info'>
+                    <p>Contract balance:</p>
+                    <p>ETH price:</p>
+                    <p>USDT price:</p>
+                    <p>Last action:</p>
+              </div>
+            </div>
+            <div className='contract-container'>
+              <div className='contract-name'>
+                   <p> UNISWAP ETH/USDC</p>
+              </div>
+              <div className='contract-info'>
+                    <p>Contract balance:</p>
+                    <p>ETH price:</p>
+                    <p>USDC price:</p>
+                    <p>Last action:</p>
+              </div>
+            </div>
+            <div className='contract-container'>
+              <div className='contract-name'>
+                   <p> UNISWAP USDT/USDC</p>
+              </div>
+              <div className='contract-info'>
+                    <p>Contract balance:</p>
+                    <p>USDT price:</p>
+                    <p>USDC price:</p>
+                    <p>Last action:</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <Loader type="ball-clip-rotate-multiple" />
