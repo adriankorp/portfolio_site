@@ -3,6 +3,15 @@ import { Component } from 'react'
 import Loader from 'react-loaders'
 import './index.scss'
 import AnimatedLetters from '../AnimatedLetters'
+import {
+  getPoolPrices,
+  ethDecimals,
+  usdcDecimals,
+  usdtDecimals,
+  ethUsdtPairContract,
+  usdcEthPairContract,
+  usdcUsdtPairContract,
+} from './utilis'
 
 class SmartContract extends Component {
   // Constructor
@@ -16,18 +25,34 @@ class SmartContract extends Component {
       standard: 0,
       slow: 0,
       priceUSD: 0,
-      LetterClass: 'text-animate'
+      LetterClass: 'text-animate',
+      usdcEthPair: {
+        ethUsdcPrice: 0,
+        usdcEthPrice: 0,
+      },
+      ethUsdtPair: {
+        ethUsdtPrice: 0,
+        usdtEthPrice: 0,
+      },
+      usdcUsdtPair: {
+        usdtUsdcPrice: 0,
+        usdcUsdtPrice: 0,
+      },
     }
     this.getGasData()
+    this.getDataFromContracts()
   }
 
   async componentDidMount() {
+
+    console.log(this.state.ethUsdtPair)
     setTimeout(() => {
       this.state.LetterClass = 'text-animate-hover'
     }, 1000)
     console.log('Testllllllllll')
     this.timer = setInterval(() => {
       this.getGasData()
+      this.getDataFromContracts()
     }, 10000)
   }
 
@@ -38,6 +63,23 @@ class SmartContract extends Component {
   toGasPriceUsd(number, gasUsed, price) {
     number = (number / 1e18) * price * gasUsed
     return number.toFixed(2)
+  }
+
+  async getDataFromContracts() {
+    ;[
+      this.state.usdcEthPair['usdcEthPrice'],
+      this.state.usdcEthPair['ethUsdcPrice'],
+    ] = await getPoolPrices(usdcEthPairContract, usdcDecimals, ethDecimals)
+
+    ;[
+      this.state.ethUsdtPair['ethUsdtPrice'],
+      this.state.ethUsdtPair['usdtEthPrice'],
+    ] = await getPoolPrices(ethUsdtPairContract, ethDecimals, usdtDecimals)
+
+    ;[
+      this.state.usdcUsdtPair['usdcUsdtPrice'],
+      this.state.usdcUsdtPair['usdtUsdcPrice'],
+    ] = await getPoolPrices(usdcUsdtPairContract, usdcDecimals, usdtDecimals)
   }
 
   async getGasData() {
@@ -60,10 +102,10 @@ class SmartContract extends Component {
           ).toFixed(0),
           priceUSD: json.data.priceUSD,
         })
-        console.log(this.state.rapid)
-        console.log(this.state.fast)
-        console.log(this.state.standard)
-        console.log(this.state.slow)
+        // console.log(this.state.rapid)
+        // console.log(this.state.fast)
+        // console.log(this.state.standard)
+        // console.log(this.state.slow)
         //   this.timer = setInterval(() => {
         //     this.getGasData();
         //   }, 3000);
@@ -152,37 +194,37 @@ class SmartContract extends Component {
             </div>
           </div>
           <div className="swaps-data">
-            <div className='contract-container'>
-              <div className='contract-name'>
-                   <p>UNISWAP ETH/USDT</p>
+            <div className="contract-container">
+              <div className="contract-name">
+                <p>UNISWAP ETH/USDT</p>
               </div>
-              <div className='contract-info'>
-                    <p>Contract balance:</p>
-                    <p>ETH price:</p>
-                    <p>USDT price:</p>
-                    <p>Last action:</p>
-              </div>
-            </div>
-            <div className='contract-container'>
-              <div className='contract-name'>
-                   <p> UNISWAP ETH/USDC</p>
-              </div>
-              <div className='contract-info'>
-                    <p>Contract balance:</p>
-                    <p>ETH price:</p>
-                    <p>USDC price:</p>
-                    <p>Last action:</p>
+              <div className="contract-info">
+                <p>Contract balance:</p>
+                <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice} $</p>
+                <p>USDT price: {this.state.ethUsdtPair.usdtEthPrice} ETH</p>
+                <p>Last action:</p>
               </div>
             </div>
-            <div className='contract-container'>
-              <div className='contract-name'>
-                   <p> UNISWAP USDT/USDC</p>
+            <div className="contract-container">
+              <div className="contract-name">
+                <p> UNISWAP ETH/USDC</p>
               </div>
-              <div className='contract-info'>
-                    <p>Contract balance:</p>
-                    <p>USDT price:</p>
-                    <p>USDC price:</p>
-                    <p>Last action:</p>
+              <div className="contract-info">
+                <p>Contract balance:</p>
+                <p>ETH price {this.state.usdcEthPair.ethUsdcPrice} $:</p>
+                <p>USDC price:{this.state.usdcEthPair.usdcEthPrice} ETH</p>
+                <p>Last action:</p>
+              </div>
+            </div>
+            <div className="contract-container">
+              <div className="contract-name">
+                <p> UNISWAP USDT/USDC</p>
+              </div>
+              <div className="contract-info">
+                <p>Contract balance:</p>
+                <p>USDT price: {this.state.usdcUsdtPair.usdtUsdcPrice} USDC </p>
+                <p>USDC price: {this.state.usdcUsdtPair.usdcUsdtPrice} USDT</p>
+                <p>Last action:</p>
               </div>
             </div>
           </div>
