@@ -91,8 +91,6 @@ class SmartContract extends Component {
       this.setState({
         progress: Math.round(((10 - this.state.refresTime) * 100) / 10),
       })
-
-
     }
   }
 
@@ -183,6 +181,7 @@ class SmartContract extends Component {
             />
           </h1>
           <div className="contract-data">
+            <div className='gas'>
             <div className="speed-box">
               <div className="text-speed ">
                 <p>SLOW 🐢</p>
@@ -252,7 +251,17 @@ class SmartContract extends Component {
                 </p>
               </div>
             </div>
+            </div>
+            <div className='progress-bar'>
+            <ProgressBar
+              completed={this.state.progress}
+              customLabel={`${this.state.refresTime}`}
+              labelAlignment="center"
+              isLabelVisible={this.state.progress >= 10 ? true : false}
+            />
           </div>
+          </div>
+
           <div className="swaps-data">
             <div className="contract-container">
               <div className="contract-name">
@@ -263,9 +272,8 @@ class SmartContract extends Component {
                   WETH: {this.state.ethUsdtPair.wethBalance} USDT:{' '}
                   {this.state.ethUsdtPair.usdtBalance}
                 </p>
-                <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice} $</p>
+                <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice}$</p>
                 <p>USDT price: {this.state.ethUsdtPair.usdtEthPrice} ETH</p>
-                <p>Last action:</p>
               </div>
             </div>
             <div className="contract-container">
@@ -277,9 +285,8 @@ class SmartContract extends Component {
                   WETH: {this.state.usdcEthPair.wethBalance} USDC:{' '}
                   {this.state.usdcEthPair.usdcBalance}
                 </p>
-                <p>ETH price {this.state.usdcEthPair.ethUsdcPrice} $:</p>
+                <p>ETH price {this.state.usdcEthPair.ethUsdcPrice}$:</p>
                 <p>USDC price:{this.state.usdcEthPair.usdcEthPrice} ETH</p>
-                <p>Last action:</p>
               </div>
             </div>
             <div className="contract-container">
@@ -293,17 +300,11 @@ class SmartContract extends Component {
                 </p>
                 <p>USDT price: {this.state.usdcUsdtPair.usdtUsdcPrice} USDC </p>
                 <p>USDC price: {this.state.usdcUsdtPair.usdcUsdtPrice} USDT</p>
-                <p>Last action:</p>
               </div>
             </div>
 
-            <ProgressBar
-              completed={this.state.progress}
-              customLabel={`${this.state.refresTime}`}
-              labelAlignment= 'center'
-              isLabelVisible = {this.state.progress >= 10 ? true : false}
-            />
           </div>
+
         </div>
 
         <Loader type="ball-clip-rotate-multiple" />
