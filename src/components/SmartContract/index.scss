@@ -105,8 +105,6 @@
     width: 50%;
     height: 40%;
 
-
-
     .contract-container {
       width: 100%;
       height: 32%;
@@ -118,20 +116,16 @@
     }
 
     .contract-name {
-    position: relative;
-    width: 100%;
-  
+      position: relative;
+      width: 100%;
 
-    border-bottom: 3px solid #fff;
-    text-align: center;
-
+      border-bottom: 3px solid #fff;
+      text-align: center;
 
       p {
         font-size: 20px;
         display: inline;
-
       }
-
     }
 
     .contract-info {
@@ -139,13 +133,10 @@
       width: 100%;
       height: 10%;
 
-
       p {
         margin: 0;
         margin-left: 5px;
         font-size: 15px;
-
-
       }
     }
   }

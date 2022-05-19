@@ -1,5 +1,8 @@
 import Web3 from 'web3'
 import { uniswapV3Pair } from './abi/uniswapv3_pair'
+import { weth_abi } from './abi/weth_abi'
+import { usdc_abi } from './abi/usdc_abi'
+import { usdt_abi } from './abi/usdt_abi'
 const TICK_BASE = 1.0001
 
 export const ethDecimals = 18
@@ -30,6 +33,9 @@ export const usdcUsdtPairContract = new web3.eth.Contract(
   uniswapV3Pair,
   usdcUsdtPairContractAddress
 )
+export const usdcContract = new web3.eth.Contract(usdc_abi, usdcAddress)
+export const usdtContract = new web3.eth.Contract(usdt_abi, usdtAddress)
+export const wethContract = new web3.eth.Contract(weth_abi, wethAddress)
 
 function tickToPrice(tick) {
   return TICK_BASE ** tick
@@ -45,6 +51,12 @@ export async function getPoolPrices(poolContract, decimals0, decimals1) {
   return [adjusted_price.toFixed(6), (1 / adjusted_price).toFixed(6)]
 }
 
-export async function getBalanceofToken(tokenContract){
-
+export async function getBalanceofToken(tokenContract, walletAddress) {
+  let balance = 0
+  const result = await tokenContract.methods.balanceOf(walletAddress).call()
+  const decimals = await tokenContract.methods.decimals.call().call()
+  const format = web3.utils.fromWei(result)
+  balance = result /(10**decimals);
+ 
+  return parseInt(balance)
 }

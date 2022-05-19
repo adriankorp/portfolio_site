@@ -2,15 +2,23 @@ import Web3 from 'web3'
 import { Component } from 'react'
 import Loader from 'react-loaders'
 import './index.scss'
+import ProgressBar from '@ramonak/react-progress-bar'
 import AnimatedLetters from '../AnimatedLetters'
 import {
   getPoolPrices,
+  getBalanceofToken,
+  usdcEthPairContractAddress,
+  ethUsdtPairContractAddress,
+  usdcUsdtPairContractAddress,
   ethDecimals,
   usdcDecimals,
   usdtDecimals,
   ethUsdtPairContract,
   usdcEthPairContract,
   usdcUsdtPairContract,
+  wethContract,
+  usdcContract,
+  usdtContract,
 } from './utilis'
 
 class SmartContract extends Component {
@@ -26,38 +34,66 @@ class SmartContract extends Component {
       slow: 0,
       priceUSD: 0,
       LetterClass: 'text-animate',
+      refresTime: 0,
+      progress: 0,
       usdcEthPair: {
         ethUsdcPrice: 0,
         usdcEthPrice: 0,
+        usdcBalance: 0,
+        wethBalance: 0,
       },
       ethUsdtPair: {
         ethUsdtPrice: 0,
         usdtEthPrice: 0,
+        usdtBalance: 0,
+        wethBalance: 0,
       },
       usdcUsdtPair: {
         usdtUsdcPrice: 0,
         usdcUsdtPrice: 0,
+        usdcBalance: 0,
+        usdtBalance: 0,
       },
     }
-    this.getGasData()
-    this.getDataFromContracts()
   }
 
   async componentDidMount() {
-
-    console.log(this.state.ethUsdtPair)
-    setTimeout(() => {
-      this.state.LetterClass = 'text-animate-hover'
-    }, 1000)
-    console.log('Testllllllllll')
+    this.refreshData()
     this.timer = setInterval(() => {
-      this.getGasData()
-      this.getDataFromContracts()
-    }, 10000)
+      if (this.state.LetterClass !== 'text-animate-hover') {
+        this.state.LetterClass = 'text-animate-hover'
+      }
+
+      this.refreshData()
+    }, 1000)
   }
 
   componentWillUnmount() {
     clearInterval(this.timer)
+  }
+
+  refreshData() {
+    if (this.state.refresTime <= 0) {
+      console.log('tatas')
+      this.getGasData()
+      this.getDataFromContracts()
+      this.setState({
+        refresTime: 10,
+      })
+      this.setState({
+        progress: 0,
+      })
+    } else {
+      this.state.refresTime--
+      // this.setState({
+      //   refresTime: this.state.refresTime - 1,
+      // })
+      this.setState({
+        progress: Math.round(((10 - this.state.refresTime) * 100) / 10),
+      })
+
+
+    }
   }
 
   toGasPriceUsd(number, gasUsed, price) {
@@ -70,16 +106,40 @@ class SmartContract extends Component {
       this.state.usdcEthPair['usdcEthPrice'],
       this.state.usdcEthPair['ethUsdcPrice'],
     ] = await getPoolPrices(usdcEthPairContract, usdcDecimals, ethDecimals)
-
     ;[
       this.state.ethUsdtPair['ethUsdtPrice'],
       this.state.ethUsdtPair['usdtEthPrice'],
     ] = await getPoolPrices(ethUsdtPairContract, ethDecimals, usdtDecimals)
-
     ;[
       this.state.usdcUsdtPair['usdcUsdtPrice'],
       this.state.usdcUsdtPair['usdtUsdcPrice'],
     ] = await getPoolPrices(usdcUsdtPairContract, usdcDecimals, usdtDecimals)
+    this.state.usdcEthPair['usdcBalance'] = await getBalanceofToken(
+      usdcContract,
+      usdcEthPairContractAddress
+    )
+    this.state.usdcEthPair['wethBalance'] = await getBalanceofToken(
+      wethContract,
+      usdcEthPairContractAddress
+    )
+
+    this.state.ethUsdtPair['usdtBalance'] = await getBalanceofToken(
+      usdtContract,
+      ethUsdtPairContractAddress
+    )
+    this.state.ethUsdtPair['wethBalance'] = await getBalanceofToken(
+      wethContract,
+      ethUsdtPairContractAddress
+    )
+
+    this.state.usdcUsdtPair['usdtBalance'] = await getBalanceofToken(
+      usdtContract,
+      usdcUsdtPairContractAddress
+    )
+    this.state.usdcUsdtPair['usdcBalance'] = await getBalanceofToken(
+      usdcContract,
+      usdcUsdtPairContractAddress
+    )
   }
 
   async getGasData() {
@@ -199,7 +259,10 @@ class SmartContract extends Component {
                 <p>UNISWAP ETH/USDT</p>
               </div>
               <div className="contract-info">
-                <p>Contract balance:</p>
+                <p>
+                  WETH: {this.state.ethUsdtPair.wethBalance} USDT:{' '}
+                  {this.state.ethUsdtPair.usdtBalance}
+                </p>
                 <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice} $</p>
                 <p>USDT price: {this.state.ethUsdtPair.usdtEthPrice} ETH</p>
                 <p>Last action:</p>
@@ -210,7 +273,10 @@ class SmartContract extends Component {
                 <p> UNISWAP ETH/USDC</p>
               </div>
               <div className="contract-info">
-                <p>Contract balance:</p>
+                <p>
+                  WETH: {this.state.usdcEthPair.wethBalance} USDC:{' '}
+                  {this.state.usdcEthPair.usdcBalance}
+                </p>
                 <p>ETH price {this.state.usdcEthPair.ethUsdcPrice} $:</p>
                 <p>USDC price:{this.state.usdcEthPair.usdcEthPrice} ETH</p>
                 <p>Last action:</p>
@@ -221,12 +287,22 @@ class SmartContract extends Component {
                 <p> UNISWAP USDT/USDC</p>
               </div>
               <div className="contract-info">
-                <p>Contract balance:</p>
+                <p>
+                  USDC: {this.state.usdcUsdtPair.usdcBalance} USDT:{' '}
+                  {this.state.usdcUsdtPair.usdtBalance}
+                </p>
                 <p>USDT price: {this.state.usdcUsdtPair.usdtUsdcPrice} USDC </p>
                 <p>USDC price: {this.state.usdcUsdtPair.usdcUsdtPrice} USDT</p>
                 <p>Last action:</p>
               </div>
             </div>
+
+            <ProgressBar
+              completed={this.state.progress}
+              customLabel={`${this.state.refresTime}`}
+              labelAlignment= 'center'
+              isLabelVisible = {this.state.progress >= 10 ? true : false}
+            />
           </div>
         </div>
 
