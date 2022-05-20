@@ -285,8 +285,8 @@ class SmartContract extends Component {
                   WETH: {this.state.usdcEthPair.wethBalance} USDC:{' '}
                   {this.state.usdcEthPair.usdcBalance}
                 </p>
-                <p>ETH price {this.state.usdcEthPair.ethUsdcPrice}$:</p>
-                <p>USDC price:{this.state.usdcEthPair.usdcEthPrice} ETH</p>
+                <p>ETH price: {this.state.usdcEthPair.ethUsdcPrice}$:</p>
+                <p>USDC price: {this.state.usdcEthPair.usdcEthPrice} ETH</p>
               </div>
             </div>
             <div className="contract-container">

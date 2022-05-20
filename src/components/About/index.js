@@ -48,29 +48,31 @@ const About = () => {
             this direction.
           </p>
         </div>
-
-        <div className="stage-cube-cont">
-          <div className="cubespinner">
-            <div className="face1">
+        <div className='stage-cube-cont'>
+        <div className="container-cube">
+          <div className="cube">
+            <div className="front">
               <FontAwesomeIcon icon={faLinux} color="#333" />
             </div>
-            <div className="face2">
+            <div className="back">
               <FontAwesomeIcon icon={faFileCode} color="#F06529" />
             </div>
-            <div className="face3">
+            <div className="right">
               <FontAwesomeIcon icon={faPython} color="#28A4D9" />
             </div>
-            <div className="face4">
+            <div className="left">
               <FontAwesomeIcon icon={faReact} color="#5ED4F4" />
             </div>
-            <div className="face5">
+            <div className="top">
               <FontAwesomeIcon icon={faEthereum} color="#3c3c3d" />
             </div>
-            <div className="face6">
+            <div className="bottom">
               <FontAwesomeIcon icon={faGithub} color="#333" />
             </div>
           </div>
         </div>
+        </div>
+
       </div>
       <Loader type="ball-clip-rotate-multiple" />
     </>
