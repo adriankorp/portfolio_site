@@ -18,7 +18,7 @@ const Skills = () => {
     setTimeout(() => {
       setLetterClass('text-animate-hover')
       setWidthTest(['50%', '25%', '35%', '20%', '45%', '45%'])
-    }, 3000)
+    }, 4000)
   }, [])
   return (
     <>
