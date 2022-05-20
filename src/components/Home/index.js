@@ -59,9 +59,9 @@ const Home = () => {
           <h2>
             Junior Python / Junior Java Script / Junior Blockchain Developer
           </h2>
-          <Link to="/contact" className="flat-button">
+          <a href='https://www.linkedin.com/in/adrian-korpowski/' target="_blank" rel="noreferrer" className='flat-button'>
             CONTACT ME
-          </Link>
+          </a>
         </div>
       </div>
       <Loader type="ball-clip-rotate-multiple" />

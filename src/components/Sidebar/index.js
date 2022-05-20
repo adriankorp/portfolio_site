@@ -44,12 +44,12 @@ const Sidebar = () => (
     </nav>
     <ul>
       <li>
-        <a target="_blank" rel="noreferrer">
+        <a href='https://www.linkedin.com/in/adrian-korpowski/' target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faLinkedin} color="#4d4d4e" />
         </a>
       </li>
       <li>
-        <a target="_blank" rel="noreferrer">
+        <a  href='https://github.com/adriankorp' target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faGithub} color="#4d4d4e" />
         </a>
       </li>
