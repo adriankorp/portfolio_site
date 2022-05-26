@@ -57,7 +57,7 @@ const Home = () => {
             />
           </h1>
           <h2>
-            Junior Python / Junior Java Script / Junior Blockchain Developer
+            Junior Python / Java Script / Blockchain Developer
           </h2>
           <a href='https://www.linkedin.com/in/adrian-korpowski/' target="_blank" rel="noreferrer" className='flat-button'>
             CONTACT ME
