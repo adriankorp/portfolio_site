@@ -33,7 +33,7 @@ const About = () => {
             />
           </h1>
           <p>
-            I'm very ambitious junior developer looking for a role in
+            I'm ambitious junior developer looking for a role in
             established IT company with the opportunity to work with the latest
             technologies on challenging and diverse projects.
           </p>
@@ -44,8 +44,7 @@ const About = () => {
           </p>
           <p>
             My main hobby has been cryptocurrencies for 2 years, thanks to them
-            I have achieved a lot and I would like to continue to develop in
-            this direction.
+            I have achieved a lot and I would like to continue developing in this direction.
           </p>
         </div>
         <div className='stage-cube-cont'>
