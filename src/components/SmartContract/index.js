@@ -252,6 +252,7 @@ class SmartContract extends Component {
               </div>
             </div>
             </div>
+            {/* <div className='bar-conteiner'>
             <div className='progress-bar'>
             <ProgressBar
               completed={this.state.progress}
@@ -260,6 +261,8 @@ class SmartContract extends Component {
               isLabelVisible={this.state.progress >= 10 ? true : false}
             />
           </div>
+            </div> */}
+
           </div>
 
           <div className="swaps-data">
@@ -272,7 +275,7 @@ class SmartContract extends Component {
                   WETH: {this.state.ethUsdtPair.wethBalance} USDT:{' '}
                   {this.state.ethUsdtPair.usdtBalance}
                 </p>
-                <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice}$</p>
+                <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice} $</p>
                 <p>USDT price: {this.state.ethUsdtPair.usdtEthPrice} ETH</p>
               </div>
             </div>
@@ -285,7 +288,7 @@ class SmartContract extends Component {
                   WETH: {this.state.usdcEthPair.wethBalance} USDC:{' '}
                   {this.state.usdcEthPair.usdcBalance}
                 </p>
-                <p>ETH price: {this.state.usdcEthPair.ethUsdcPrice}$:</p>
+                <p>ETH price: {this.state.usdcEthPair.ethUsdcPrice} $:</p>
                 <p>USDC price: {this.state.usdcEthPair.usdcEthPrice} ETH</p>
               </div>
             </div>

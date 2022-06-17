@@ -1,10 +1,10 @@
 .stage-cube-cont {
   width: 60%;
-  height: 50%;
-  top: 10%;
+  height: 60%;
+  top: 30%;
 
   left: 60%;
-  padding-top: 18%;
+
   margin-left: 0;
   position: absolute;
   right: 0;
@@ -12,6 +12,7 @@
 }
 
 .container-cube {
+  margin-top: 70px;
   width: 200px;
   height: 200px;
   left: 15%;
@@ -44,7 +45,6 @@
   border: 2px solid black;
   background: rgba(255, 255, 255, 0.4);
 }
-
 
 @keyframes rotatecube {
   0% {
@@ -117,7 +117,7 @@
     width: 60%;
     height: 50%;
     min-width: 300px;
-    top: 55%;
+    top: 43%;
     left: 5%;
     padding-top: 18%;
     margin-left: 0;

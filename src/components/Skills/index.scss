@@ -1,14 +1,11 @@
 .skills-zone {
-  
-    width: 50%;
-    height: 100%;
-    padding-top: 18%;
-    margin-left: 0;
-    position: absolute;
-    right: 0;
-    overflow: hidden;
-
-
+  width: 50%;
+  height: 100%;
+  top: 30%;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  overflow: hidden;
 }
 
 .chart {
@@ -31,6 +28,42 @@
       background-color: #a1d610;
       height: 100%;
       transition: width 1.3s ease-out;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .skills-zone {
+    width: 80%;
+    height: 100%;
+    top: 58%;
+    margin-left: 6%;
+    position: relative;
+    
+    overflow: hidden;
+  }
+
+  .chart {
+    margin-bottom: 1.5rem;
+
+    span {
+      font-size: 12px;
+      font-family: sans-serif;
+      margin-bottom: 1px;
+      display: block;
+      color: aliceblue;
+    }
+
+    footer {
+      background-color: #373737;
+      height: 2px;
+      width: 80%;
+
+      div {
+        background-color: #a1d610;
+        height: 100%;
+        transition: width 1.3s ease-out;
+      }
     }
   }
 }
