@@ -17,7 +17,7 @@ const Skills = () => {
   useEffect(() => {
     setTimeout(() => {
       setLetterClass('text-animate-hover')
-      setWidthTest(['50%', '25%', '35%', '20%', '45%', '45%'])
+      setWidthTest(['45%', '40%', '25%', '35%', '40%', '35%'])
     }, 4000)
   }, [])
   return (
