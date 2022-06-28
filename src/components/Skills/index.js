@@ -25,7 +25,7 @@ const Skills = () => {
       <div className="container about-page">
         <div className="text-zone">
           <h1>
-          <AnimatedLetters
+            <AnimatedLetters
               letterClass={letterClass}
               strArray={['S', 'k', 'i', 'l', 'l', ' s', ' ', '&']}
               idx={15}
@@ -48,46 +48,55 @@ const Skills = () => {
             Unfortunately, I can't share the code on github.
           </p>
           <p>
-            I am currently learning JS syntax and looking for exploits in smart
-            contract. I write, test and deploy, Smartcontracts in the brownie
-            framework
+            I am currently learning React. Recently I created a weather app. You
+            can find a link to it at the bottom of the sidebar.
           </p>
         </div>
         <div className="skills-zone">
-        <div className="chart">
+          <div className="chart">
             <span>Python</span>
             <footer>
-              <div style={{ 'width': widthTest[0]  }}></div>
+              <div style={{ width: widthTest[0] }}></div>
             </footer>
           </div>
           <div className="chart">
             <span>JavaScript</span>
             <footer>
-              <div  style={{ 'width': widthTest[1] , 'backgroundColor': '#0070ff' }}></div>
+              <div
+                style={{ width: widthTest[1], backgroundColor: '#0070ff' }}
+              ></div>
             </footer>
           </div>
           <div className="chart">
             <span>Solidity</span>
             <footer>
-              <div  style={{ 'width': widthTest[2] , 'backgroundColor': '#0eff77' }}></div>
+              <div
+                style={{ width: widthTest[2], backgroundColor: '#0eff77' }}
+              ></div>
             </footer>
           </div>
           <div className="chart">
             <span>React</span>
             <footer>
-              <div  style={{ 'width': widthTest[3] , 'backgroundColor': '#a710bd' }}></div>
+              <div
+                style={{ width: widthTest[3], backgroundColor: '#a710bd' }}
+              ></div>
             </footer>
           </div>
           <div className="chart">
             <span>brownie</span>
             <footer>
-              <div style={{ 'width': widthTest[4] , 'backgroundColor': '#bd1020' }}></div>
+              <div
+                style={{ width: widthTest[4], backgroundColor: '#bd1020' }}
+              ></div>
             </footer>
           </div>
           <div className="chart">
             <span>web3</span>
             <footer>
-              <div  style={{ 'width': widthTest[5] , 'backgroundColor': '#ffdb17'}}></div>
+              <div
+                style={{ width: widthTest[5], backgroundColor: '#ffdb17' }}
+              ></div>
             </footer>
           </div>
         </div>
