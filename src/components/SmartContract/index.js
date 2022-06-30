@@ -291,7 +291,7 @@ class SmartContract extends Component {
               </div>
               <div className="contract-info">
                 <p>
-                  WETH: {this.state.ethUsdtPair.wethBalance} USDT:{' '}
+                  WETH: {this.state.ethUsdtPair.wethBalance} USDT:
                   {this.state.ethUsdtPair.usdtBalance}
                 </p>
                 <p>ETH price: {this.state.ethUsdtPair.ethUsdtPrice} $</p>
@@ -304,10 +304,10 @@ class SmartContract extends Component {
               </div>
               <div className="contract-info">
                 <p>
-                  WETH: {this.state.usdcEthPair.wethBalance} USDC:{' '}
+                  WETH: {this.state.usdcEthPair.wethBalance} USDC:
                   {this.state.usdcEthPair.usdcBalance}
                 </p>
-                <p>ETH price: {this.state.usdcEthPair.ethUsdcPrice} $:</p>
+                <p>ETH price: {this.state.usdcEthPair.ethUsdcPrice} $</p>
                 <p>USDC price: {this.state.usdcEthPair.usdcEthPrice} ETH</p>
               </div>
             </div>
@@ -317,7 +317,7 @@ class SmartContract extends Component {
               </div>
               <div className="contract-info">
                 <p>
-                  USDC: {this.state.usdcUsdtPair.usdcBalance} USDT:{' '}
+                  USDC: {this.state.usdcUsdtPair.usdcBalance} USDT:
                   {this.state.usdcUsdtPair.usdtBalance}
                 </p>
                 <p>USDT price: {this.state.usdcUsdtPair.usdtUsdcPrice} USDC </p>
