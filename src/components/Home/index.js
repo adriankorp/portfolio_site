@@ -1,6 +1,5 @@
 import './index.scss'
 import LogoTitle from '../../assets/images/logo-a.png'
-import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters'
 import Loader from 'react-loaders'
@@ -56,10 +55,13 @@ const Home = () => {
               idx={21}
             />
           </h1>
-          <h2>
-            Junior Python / Java Script / Blockchain Developer
-          </h2>
-          <a href='https://www.linkedin.com/in/adrian-korpowski/' target="_blank" rel="noreferrer" className='flat-button'>
+          <h2>Junior Python / Java Script / Blockchain Developer</h2>
+          <a
+            href="https://www.linkedin.com/in/adrian-korpowski/"
+            target="_blank"
+            rel="noreferrer"
+            className="flat-button"
+          >
             CONTACT ME
           </a>
         </div>

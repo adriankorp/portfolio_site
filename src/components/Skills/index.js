@@ -17,7 +17,7 @@ const Skills = () => {
   useEffect(() => {
     setTimeout(() => {
       setLetterClass('text-animate-hover')
-      setWidthTest(['45%', '40%', '25%', '35%', '40%', '35%'])
+      setWidthTest(['45%', '40%', '25%', '35%', '40%', '25%'])
     }, 4000)
   }, [])
   return (
@@ -92,7 +92,7 @@ const Skills = () => {
             </footer>
           </div>
           <div className="chart">
-            <span>web3</span>
+            <span>Linux</span>
             <footer>
               <div
                 style={{ width: widthTest[5], backgroundColor: '#ffdb17' }}

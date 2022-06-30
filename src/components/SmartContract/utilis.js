@@ -55,8 +55,8 @@ export async function getBalanceofToken(tokenContract, walletAddress) {
   let balance = 0
   const result = await tokenContract.methods.balanceOf(walletAddress).call()
   const decimals = await tokenContract.methods.decimals.call().call()
-  const format = web3.utils.fromWei(result)
-  balance = result /(10**decimals);
- 
+  //const format = web3.utils.fromWei(result)
+  balance = result / 10 ** decimals
+
   return parseInt(balance)
 }

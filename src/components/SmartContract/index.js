@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import { Component } from 'react'
 import Loader from 'react-loaders'
 import './index.scss'
-import ProgressBar from '@ramonak/react-progress-bar'
+//import ProgressBar from '@ramonak/react-progress-bar'
 import AnimatedLetters from '../AnimatedLetters'
 import {
   getPoolPrices,
@@ -100,44 +100,65 @@ class SmartContract extends Component {
   }
 
   async getDataFromContracts() {
-    ;[
-      this.state.usdcEthPair['usdcEthPrice'],
-      this.state.usdcEthPair['ethUsdcPrice'],
-    ] = await getPoolPrices(usdcEthPairContract, usdcDecimals, ethDecimals)
-    ;[
-      this.state.ethUsdtPair['ethUsdtPrice'],
-      this.state.ethUsdtPair['usdtEthPrice'],
-    ] = await getPoolPrices(ethUsdtPairContract, ethDecimals, usdtDecimals)
-    ;[
-      this.state.usdcUsdtPair['usdcUsdtPrice'],
-      this.state.usdcUsdtPair['usdtUsdcPrice'],
-    ] = await getPoolPrices(usdcUsdtPairContract, usdcDecimals, usdtDecimals)
-    this.state.usdcEthPair['usdcBalance'] = await getBalanceofToken(
-      usdcContract,
-      usdcEthPairContractAddress
+    let usdcEthPrices = await getPoolPrices(
+      usdcEthPairContract,
+      usdcDecimals,
+      ethDecimals
     )
-    this.state.usdcEthPair['wethBalance'] = await getBalanceofToken(
-      wethContract,
-      usdcEthPairContractAddress
+    let ethUsdtPrices = await getPoolPrices(
+      ethUsdtPairContract,
+      ethDecimals,
+      usdtDecimals
     )
+    let usdcUsdtPrices = await getPoolPrices(
+      usdcUsdtPairContract,
+      usdcDecimals,
+      usdtDecimals
+    )
+    this.setState({
+      usdcEthPair: {
+        ethUsdcPrice: usdcEthPrices[1],
+        usdcEthPrice: usdcEthPrices[0],
+        usdcBalance: await getBalanceofToken(
+          usdcContract,
+          usdcEthPairContractAddress
+        ),
+        wethBalance: await getBalanceofToken(
+          wethContract,
+          usdcEthPairContractAddress
+        ),
+      },
+    })
 
-    this.state.ethUsdtPair['usdtBalance'] = await getBalanceofToken(
-      usdtContract,
-      ethUsdtPairContractAddress
-    )
-    this.state.ethUsdtPair['wethBalance'] = await getBalanceofToken(
-      wethContract,
-      ethUsdtPairContractAddress
-    )
+    this.setState({
+      ethUsdtPair: {
+        ethUsdtPrice: ethUsdtPrices[0],
+        usdtEthPrice: ethUsdtPrices[0],
+        usdtBalance: await getBalanceofToken(
+          usdtContract,
+          ethUsdtPairContractAddress
+        ),
+        wethBalance: await getBalanceofToken(
+          wethContract,
+          ethUsdtPairContractAddress
+        ),
+      },
+    })
 
-    this.state.usdcUsdtPair['usdtBalance'] = await getBalanceofToken(
-      usdtContract,
-      usdcUsdtPairContractAddress
-    )
-    this.state.usdcUsdtPair['usdcBalance'] = await getBalanceofToken(
-      usdcContract,
-      usdcUsdtPairContractAddress
-    )
+    this.setState({
+      usdcUsdtPair: {
+        usdtUsdcPrice: usdcUsdtPrices[1],
+        usdcUsdtPrice: usdcUsdtPrices[0],
+        usdcBalance: await getBalanceofToken(
+          usdcContract,
+          usdcUsdtPairContractAddress
+        ),
+        usdtBalance: await getBalanceofToken(
+          usdtContract,
+          usdcUsdtPairContractAddress
+        ),
+      },
+    })
   }
 
   async getGasData() {
@@ -181,76 +202,76 @@ class SmartContract extends Component {
             />
           </h1>
           <div className="contract-data">
-            <div className='gas'>
-            <div className="speed-box">
-              <div className="text-speed ">
-                <p>SLOW 🐢</p>
+            <div className="gas">
+              <div className="speed-box">
+                <div className="text-speed ">
+                  <p>SLOW 🐢</p>
+                </div>
+                <div className="gas-view-zone">
+                  <p>GAS PRICE</p>
+                  <p>{this.state.slow}</p>
+                  <p>
+                    $
+                    {this.toGasPriceUsd(
+                      21000,
+                      this.state.priceUSD,
+                      Web3.utils.toWei(this.state.slow.toString(), 'gwei')
+                    )}
+                  </p>
+                </div>
               </div>
-              <div className="gas-view-zone">
-                <p>GAS PRICE</p>
-                <p>{this.state.slow}</p>
-                <p>
-                  $
-                  {this.toGasPriceUsd(
-                    21000,
-                    this.state.priceUSD,
-                    Web3.utils.toWei(this.state.slow.toString(), 'gwei')
-                  )}
-                </p>
-              </div>
-            </div>
 
-            <div className="speed-box">
-              <div className="text-speed ">
-                <p>NORMAL 🚗</p>
+              <div className="speed-box">
+                <div className="text-speed ">
+                  <p>NORMAL 🚗</p>
+                </div>
+                <div className="gas-view-zone">
+                  <p>GAS PRICE</p>
+                  <p>{this.state.standard}</p>
+                  <p>
+                    $
+                    {this.toGasPriceUsd(
+                      21000,
+                      this.state.priceUSD,
+                      Web3.utils.toWei(this.state.standard.toString(), 'gwei')
+                    )}
+                  </p>
+                </div>
               </div>
-              <div className="gas-view-zone">
-                <p>GAS PRICE</p>
-                <p>{this.state.standard}</p>
-                <p>
-                  $
-                  {this.toGasPriceUsd(
-                    21000,
-                    this.state.priceUSD,
-                    Web3.utils.toWei(this.state.standard.toString(), 'gwei')
-                  )}
-                </p>
+              <div className="speed-box">
+                <div className="text-speed ">
+                  <p>FAST ✈️</p>
+                </div>
+                <div className="gas-view-zone">
+                  <p>GAS PRICE</p>
+                  <p>{this.state.fast}</p>
+                  <p>
+                    $
+                    {this.toGasPriceUsd(
+                      21000,
+                      this.state.priceUSD,
+                      Web3.utils.toWei(this.state.fast.toString(), 'gwei')
+                    )}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="speed-box">
-              <div className="text-speed ">
-                <p>FAST ✈️</p>
+              <div className="speed-box">
+                <div className="text-speed ">
+                  <p>INSTANT 🚀</p>
+                </div>
+                <div className="gas-view-zone">
+                  <p>GAS PRICE</p>
+                  <p>{this.state.rapid}</p>
+                  <p>
+                    $
+                    {this.toGasPriceUsd(
+                      21000,
+                      this.state.priceUSD,
+                      Web3.utils.toWei(this.state.rapid.toString(), 'gwei')
+                    )}
+                  </p>
+                </div>
               </div>
-              <div className="gas-view-zone">
-                <p>GAS PRICE</p>
-                <p>{this.state.fast}</p>
-                <p>
-                  $
-                  {this.toGasPriceUsd(
-                    21000,
-                    this.state.priceUSD,
-                    Web3.utils.toWei(this.state.fast.toString(), 'gwei')
-                  )}
-                </p>
-              </div>
-            </div>
-            <div className="speed-box">
-              <div className="text-speed ">
-                <p>INSTANT 🚀</p>
-              </div>
-              <div className="gas-view-zone">
-                <p>GAS PRICE</p>
-                <p>{this.state.rapid}</p>
-                <p>
-                  $
-                  {this.toGasPriceUsd(
-                    21000,
-                    this.state.priceUSD,
-                    Web3.utils.toWei(this.state.rapid.toString(), 'gwei')
-                  )}
-                </p>
-              </div>
-            </div>
             </div>
             {/* <div className='bar-conteiner'>
             <div className='progress-bar'>
@@ -262,7 +283,6 @@ class SmartContract extends Component {
             />
           </div>
             </div> */}
-
           </div>
 
           <div className="swaps-data">
@@ -305,9 +325,7 @@ class SmartContract extends Component {
                 <p>USDC price: {this.state.usdcUsdtPair.usdcUsdtPrice} USDT</p>
               </div>
             </div>
-
           </div>
-
         </div>
 
         <Loader type="ball-clip-rotate-multiple" />
