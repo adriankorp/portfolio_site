@@ -74,7 +74,6 @@ class SmartContract extends Component {
 
   refreshData() {
     if (this.state.refresTime <= 0) {
-      console.log('tatas')
       this.getGasData()
       this.getDataFromContracts()
       this.setState({
@@ -133,7 +132,7 @@ class SmartContract extends Component {
     this.setState({
       ethUsdtPair: {
         ethUsdtPrice: ethUsdtPrices[0],
-        usdtEthPrice: ethUsdtPrices[0],
+        usdtEthPrice: ethUsdtPrices[1],
         usdtBalance: await getBalanceofToken(
           usdtContract,
           ethUsdtPairContractAddress
